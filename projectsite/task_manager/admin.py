@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Priority, Category, Task, SubTask, Note
 
+
 # Register your models here.
 @admin.register(Priority)
 class PriorityAdmin(admin.ModelAdmin):
@@ -14,11 +15,26 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
 
+class SubTaskInline(admin.TabularInline):
+    model = SubTask
+    extra = 1
+    fields = ("title", "status")
+    show_change_link = True
+
+
+class NoteInline(admin.StackedInline):
+    model = Note
+    extra = 1
+    fields = ("content", "created_at")
+    readonly_fields = ("created_at",)
+
+
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_display = ("title", "status", "deadline", "priority", "category")
     list_filter = ("status", "priority", "category",)
     search_fields = ("title", "description",)
+    inlines = [SubTaskInline, NoteInline] # Edit related models directly on the Task admin page
 
 
 @admin.register(SubTask)
