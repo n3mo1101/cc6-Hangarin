@@ -14,14 +14,13 @@ class Command(BaseCommand):
 
     def create_task(self, count):
         fake = Faker()
-        status_choices = [choice[0] for choice in Task._meta.get_field("status").choices]
 
         for _ in range(count):
             Task.objects.create(
                 title=fake.sentence(nb_words=5).title(),
                 description=fake.paragraph(nb_sentences=3),
                 deadline=timezone.make_aware(fake.date_time_this_month()),
-                status=fake.random_element(elements=status_choices),
+                status=fake.random_element(elements=["Pending", "InProgress", "Completed"]),
                 category=Category.objects.order_by('?').first(),
                 priority=Priority.objects.order_by('?').first(),
             )
@@ -32,13 +31,12 @@ class Command(BaseCommand):
     
     def create_subtask(self, count):
         fake = Faker()
-        status_choices = [choice[0] for choice in SubTask._meta.get_field("status").choices]
 
         for _ in range(count):
             SubTask.objects.create(
                 parent_task=Task.objects.order_by('?').first(),
                 title=fake.sentence(nb_words=5).title(),
-                status=fake.random_element(elements=status_choices),
+                status=fake.random_element(elements=["Pending", "InProgress", "Completed"]),
             )
 
         self.stdout.write(self.style.SUCCESS(
