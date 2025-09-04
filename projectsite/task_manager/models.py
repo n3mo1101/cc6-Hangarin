@@ -36,7 +36,7 @@ class Task(BaseModel):
             ],
         default="pending"
     )
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
 
     def __str__(self):

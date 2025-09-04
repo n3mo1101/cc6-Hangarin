@@ -33,7 +33,8 @@ class SubTaskAdmin(admin.ModelAdmin):
             return parent_task.title
         except Task.DoesNotExist:
             return None
-    
+    get_parent_task.short_description = "Main Task"
+
 
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
