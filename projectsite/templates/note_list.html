@@ -1,19 +1,19 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="content">
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">Subtasks</h1>
+        <h1 class="h3 mb-2 text-gray-800">Notes</h1>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title font-weight-bold text-primary">List of Subtasks</div>
+                        <div class="card-title font-weight-bold text-primary">List of Notes</div>
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <br />
                     <div class="col-md-12 row">
                         <div class="col-md-6">
                             <form class="navbar-left navbar-form nav-search mr-md-3"
-                                action="{% url 'subtask-list'%}">
+                                action="{% url 'note-list'%}">
                                 <div class="input-group">
                                     <input type="text" placeholder="Search ..." class="form-control" name="q" />
                                     <div class="input-group-append">
@@ -26,8 +26,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="float-right">
-                                <a href="{% url 'subtask-add' %}" class="btn btn-success btn-rounded">Add
-                                    Subtask</a>
+                                <a href="{% url 'note-add' %}" class="btn btn-success btn-rounded">Add
+                                    Note</a>
                             </div>
                         </div>
                     </div>
@@ -35,22 +35,20 @@
                         <table class="table table-striped mt-3">
                             <thead>
                                 <tr>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Parent Task</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Content</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for object in object_list %}
                                 <tr>
-                                    <td>{{ object.title }}</td>
-                                    <td>{{ object.parent_task }}</td>
-                                    <td>{{ object.status }}</td>
+                                    <td>{{ object.task }}</td>
+                                    <td>{{ object.content }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                          <a href="subtask_list/{{ object.id }}" class="btn btn-primary btn-rounded">Edit</a>
-                                          <a href="subtask_list/{{ object.id }}/delete" class="btn btn-danger btn-rounded"><i class="fa-solid fa-trash-can"></i></a>
+                                          <a href="note_list/{{ object.id }}" class="btn btn-primary btn-rounded">Edit</a>
+                                          <a href="note_list/{{ object.id }}/delete" class="btn btn-danger btn-rounded"><i class="fa-solid fa-trash-can"></i></a>
                                         </div>
                                       </td>                                      
                                 </tr>

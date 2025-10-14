@@ -21,3 +21,9 @@ class SubTaskForm(ModelForm):
     class Meta:
         model = SubTask
         fields = "__all__"
+
+
+class NoteForm(ModelForm):
+    class Meta:
+        model = Note
+        fields = "__all__"

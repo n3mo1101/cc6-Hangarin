@@ -20,13 +20,14 @@ from task_manager.views import (
     HomePageView,
     TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView,
     SubTaskListView, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView,
+    NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView,
 )
 from task_manager import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomePageView.as_view(), name='home'),
-    
+
     path('task_list', views.TaskListView.as_view(), name='task-list'),
     path('task_list/add', views.TaskCreateView.as_view(), name='task-add'),
     path('task_list/<pk>', views.TaskUpdateView.as_view(), name='task-update'),
@@ -36,4 +37,9 @@ urlpatterns = [
     path('subtask_list/add', views.SubTaskCreateView.as_view(), name='subtask-add'),
     path('subtask_list/<pk>', views.SubTaskUpdateView.as_view(), name='subtask-update'),
     path('subtask_list/<pk>/delete', views.SubTaskDeleteView.as_view(), name='subtask-delete'),
+
+    path('note_list', views.NoteListView.as_view(), name='note-list'),
+    path('note_list/add', views.NoteCreateView.as_view(), name='note-add'),
+    path('note_list/<pk>', views.NoteUpdateView.as_view(), name='note-update'),
+    path('note_list/<pk>/delete', views.NoteDeleteView.as_view(), name='note-delete'),
 ]
