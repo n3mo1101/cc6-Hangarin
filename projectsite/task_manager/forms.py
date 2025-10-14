@@ -15,3 +15,9 @@ class TaskForm(ModelForm):
                 }
             ),
         }
+
+
+class SubTaskForm(ModelForm):
+    class Meta:
+        model = SubTask
+        fields = "__all__"
