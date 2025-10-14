@@ -22,6 +22,7 @@ from task_manager.views import (
     SubTaskListView, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView,
     NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView,
     CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView,
+    PriorityListView, PriorityCreateView, PriorityUpdateView, PriorityDeleteView,
 )
 from task_manager import views
 
@@ -48,4 +49,9 @@ urlpatterns = [
     path('category_list/add', views.CategoryCreateView.as_view(), name='category-add'),
     path('category_list/<pk>', views.CategoryUpdateView.as_view(), name='category-update'),
     path('category_list/<pk>/delete', views.CategoryDeleteView.as_view(), name='category-delete'),
+
+    path('priority_list', views.PriorityListView.as_view(), name='priority-list'),
+    path('priority_list/add', views.PriorityCreateView.as_view(), name='priority-add'),
+    path('priority_list/<pk>', views.PriorityUpdateView.as_view(), name='priority-update'),
+    path('priority_list/<pk>/delete', views.PriorityDeleteView.as_view(), name='priority-delete'),
 ]

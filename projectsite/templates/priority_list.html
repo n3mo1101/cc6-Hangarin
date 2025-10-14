@@ -1,19 +1,19 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="content">
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">Categories</h1>
+        <h1 class="h3 mb-2 text-gray-800">Priorities</h1>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title font-weight-bold text-primary">List of Categories</div>
+                        <div class="card-title font-weight-bold text-primary">List of Priorities</div>
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <br />
                     <div class="col-md-12 row">
                         <div class="col-md-6">
                             <form class="navbar-left navbar-form nav-search mr-md-3"
-                                action="{% url 'category-list'%}">
+                                action="{% url 'priority-list'%}">
                                 <div class="input-group">
                                     <input type="text" placeholder="Search ..." class="form-control" name="q" />
                                     <div class="input-group-append">
@@ -26,8 +26,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="float-right">
-                                <a href="{% url 'category-add' %}" class="btn btn-success btn-rounded">Add
-                                    Category</a>
+                                <a href="{% url 'priority-add' %}" class="btn btn-success btn-rounded">Add
+                                    Priority</a>
                             </div>
                         </div>
                     </div>
@@ -45,8 +45,8 @@
                                     <td>{{ object.name }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                          <a href="category_list/{{ object.id }}" class="btn btn-primary btn-rounded">Edit</a>
-                                          <a href="category_list/{{ object.id }}/delete" class="btn btn-danger btn-rounded"><i class="fa-solid fa-trash-can"></i></a>
+                                          <a href="priority_list/{{ object.id }}" class="btn btn-primary btn-rounded">Edit</a>
+                                          <a href="priority_list/{{ object.id }}/delete" class="btn btn-danger btn-rounded"><i class="fa-solid fa-trash-can"></i></a>
                                         </div>
                                       </td>                                      
                                 </tr>
