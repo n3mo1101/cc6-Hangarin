@@ -21,6 +21,7 @@ from task_manager.views import (
     TaskListView, TaskCreateView, TaskUpdateView, TaskDeleteView,
     SubTaskListView, SubTaskCreateView, SubTaskUpdateView, SubTaskDeleteView,
     NoteListView, NoteCreateView, NoteUpdateView, NoteDeleteView,
+    CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView,
 )
 from task_manager import views
 
@@ -42,4 +43,9 @@ urlpatterns = [
     path('note_list/add', views.NoteCreateView.as_view(), name='note-add'),
     path('note_list/<pk>', views.NoteUpdateView.as_view(), name='note-update'),
     path('note_list/<pk>/delete', views.NoteDeleteView.as_view(), name='note-delete'),
+
+    path('category_list', views.CategoryListView.as_view(), name='category-list'),
+    path('category_list/add', views.CategoryCreateView.as_view(), name='category-add'),
+    path('category_list/<pk>', views.CategoryUpdateView.as_view(), name='category-update'),
+    path('category_list/<pk>/delete', views.CategoryDeleteView.as_view(), name='category-delete'),
 ]
