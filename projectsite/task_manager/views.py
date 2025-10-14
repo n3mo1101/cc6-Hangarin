@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.db.models import Q
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.forms import TaskForm, SubTaskForm, NoteForm, CategoryForm, PriorityForm
@@ -17,6 +18,32 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
     template_name = "task_list.html"
     paginate_by = 5
+    ordering = ["id"] 
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query)
+                )
+        return qs
+
+    def get_ordering(self):
+        allowed = ["id", "title", "deadline"]
+        sort_by = self.request.GET.get("sort_by", "id")
+        sort_order = self.request.GET.get("sort_order", "desc")  # Get the order from request
+        
+        if sort_by not in allowed:
+            sort_by = "id" # Default sort field
+        
+        # Add '-' prefix for descending order
+        if sort_order == "desc":
+            sort_by = f"-{sort_by}"
+        
+        return sort_by
 
 
 class TaskCreateView(CreateView):
@@ -45,6 +72,32 @@ class SubTaskListView(ListView):
     context_object_name = 'subtasks'
     template_name = "subtask_list.html"
     paginate_by = 5
+    ordering = ["id"] 
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(title__icontains=query) |
+                Q(parent_task__title__icontains=query)
+                )
+        return qs
+
+    def get_ordering(self):
+        allowed = ["id", "title", "parent_task__title"]
+        sort_by = self.request.GET.get("sort_by", "id")
+        sort_order = self.request.GET.get("sort_order", "desc")  # Get the order from request
+        
+        if sort_by not in allowed:
+            sort_by = "id" # Default sort field
+        
+        # Add '-' prefix for descending order
+        if sort_order == "desc":
+            sort_by = f"-{sort_by}"
+        
+        return sort_by
 
 
 class SubTaskCreateView(CreateView):
@@ -74,6 +127,17 @@ class NoteListView(ListView):
     template_name = "note_list.html"
     paginate_by = 5
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(task__title__icontains=query) |
+                Q(content__icontains=query)
+                )
+        return qs
+
 
 class NoteCreateView(CreateView):
     model = Note
@@ -102,6 +166,14 @@ class CategoryListView(ListView):
     template_name = "category_list.html"
     paginate_by = 5
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(name__icontains=query)
+        return qs
+
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -129,6 +201,14 @@ class PriorityListView(ListView):
     context_object_name = 'priorities'
     template_name = "priority_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(name__icontains=query)
+        return qs
 
 
 class PriorityCreateView(CreateView):

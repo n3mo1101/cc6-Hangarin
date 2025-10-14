@@ -36,14 +36,14 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" class="text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for object in object_list %}
                                 <tr>
                                     <td>{{ object.name }}</td>
-                                    <td>
+                                    <td class="text-right">
                                         <div class="btn-group" role="group">
                                           <a href="category_list/{{ object.id }}" class="btn btn-primary btn-rounded">Edit</a>
                                           <a href="category_list/{{ object.id }}/delete" class="btn btn-danger btn-rounded"><i class="fa-solid fa-trash-can"></i></a>
