@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="content">
     <div class="container-fluid">
-        <!-- <h4 class="page-title">Tasks</h4> -->
+        <h1 class="h3 mb-2 text-gray-800">Tasks</h1>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="page-title">List of Tasks</h4>
+                        <div class="card-title font-weight-bold text-primary">List of Tasks</div>
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <br />
@@ -17,15 +17,15 @@
                                 <div class="input-group">
                                     <input type="text" placeholder="Search ..." class="form-control" name="q" />
                                     <div class="input-group-append">
-                                        <button class="btn btn-round input-group-text" type="submit">
-                                            <i class="la la-search search-icon"></i>
+                                        <button class="btn input-group-text" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <div class="pull-right">
+                            <div class="float-right">
                                 <a href="{% url 'task-add' %}" class="btn btn-success btn-rounded">Add
                                     Task</a>
                             </div>
@@ -53,11 +53,17 @@
                                     <td>{{ object.deadline }}</td>
                                     <td>{{ object.priority }}</td>
                                     <td>{{ object.category }}</td>
-                                    <td>
-                                        <a href="task_list/{{ object.id }}">Edit</a>
+                                    <!-- <td>
+                                        <a href="task_list/{{ object.id }}" class="btn btn-primary btn-rounded">Edit</a>
                                         <a href="task_list/{{ object.id }}/delete"
-                                            class="text-danger">Delete</a>
-                                    </td>
+                                            class="btn btn-danger btn-rounded">Delete</a>
+                                    </td> -->
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                          <a href="task_list/{{ object.id }}" class="btn btn-primary btn-rounded">Edit</a>
+                                          <a href="task_list/{{ object.id }}/delete" class="btn btn-danger btn-rounded"><i class="fa-solid fa-trash-can"></i></a>
+                                        </div>
+                                      </td>                                      
                                 </tr>
                                 {% empty %}
                                 <tr>
