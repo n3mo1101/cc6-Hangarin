@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load active_link %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +46,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'home' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -61,14 +61,14 @@
             </div>
 
             <!-- Nav Item - Tasks Menu -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'task-list' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'task-list' %}">
                     <i class="fa-solid fa-list-check"></i>
                     <span>Tasks</span></a>
             </li>
 
             <!-- Nav Item - Subtasks Menu -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'subtask-list' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'subtask-list' %}">
                     <i class="fa-solid fa-thumbtack"></i>
                     <span>Subtasks</span></a>
@@ -83,21 +83,21 @@
             </div>
 
             <!-- Nav Item - Notes -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'note-list' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'note-list' %}">
                     <i class="fa-regular fa-note-sticky"></i>
                     <span>Notes</span></a>
             </li>
 
             <!-- Nav Item - Categories -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'category-list' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'category-list' %}">
                     <i class="fa-regular fa-font-awesome"></i>
                     <span>Categories</span></a>
             </li>
 
             <!-- Nav Item - Priorities -->
-            <li class="nav-item">
+            <li class="nav-item {% if request.resolver_match.url_name == 'priority-list' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'priority-list' %}">
                     <i class="fa-solid fa-hourglass-start"></i>
                     <span>Priorities</span></a>
