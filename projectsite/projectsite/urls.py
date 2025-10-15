@@ -30,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomePageView.as_view(), name='home'),
     path('accounts/', include('allauth.urls')), # allauth routes
+    path('', include('pwa.urls')), # PWA routes
 
     path('task_list', views.TaskListView.as_view(), name='task-list'),
     path('task_list/add', views.TaskCreateView.as_view(), name='task-add'),
