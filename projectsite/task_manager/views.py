@@ -19,8 +19,7 @@ class HomePageView(ListView):
         context["total_notes"] = Note.objects.count()
 
         count = (
-            (Task.objects.filter(
-                status="Completed").count()
+            (Task.objects.filter(status="Completed").count()
                 + SubTask.objects.filter(status="Completed").count()
             )
         )
