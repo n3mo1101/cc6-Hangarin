@@ -5,8 +5,9 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.forms import TaskForm, SubTaskForm, NoteForm, CategoryForm, PriorityForm
 from task_manager.models import Task, SubTask, Note, Category, Priority
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class HomePageView(ListView):
+class HomePageView(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'home'
     template_name = "home.html"
@@ -29,7 +30,7 @@ class HomePageView(ListView):
 
 
 # Task class views
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
     template_name = "task_list.html"
@@ -83,7 +84,7 @@ class TaskDeleteView(DeleteView):
 
 
 # Subtask class views
-class SubTaskListView(ListView):
+class SubTaskListView(LoginRequiredMixin, ListView):
     model = SubTask
     context_object_name = 'subtasks'
     template_name = "subtask_list.html"
@@ -137,7 +138,7 @@ class SubTaskDeleteView(DeleteView):
 
 
 # Note class views
-class NoteListView(ListView):
+class NoteListView(LoginRequiredMixin, ListView):
     model = Note
     context_object_name = 'notes'
     template_name = "note_list.html"
@@ -191,7 +192,7 @@ class NoteDeleteView(DeleteView):
 
 
 # Category class views
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
     model = Category
     context_object_name = 'categories'
     template_name = "category_list.html"
@@ -241,7 +242,7 @@ class CategoryDeleteView(DeleteView):
 
 
 # Priority class views
-class PriorityListView(ListView):
+class PriorityListView(LoginRequiredMixin, ListView):
     model = Priority
     context_object_name = 'priorities'
     template_name = "priority_list.html"
