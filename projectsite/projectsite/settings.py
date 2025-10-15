@@ -72,6 +72,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "projectsite.middleware.NoCacheMiddleware", # custom middleware to prevent caching
 ]
 
 ROOT_URLCONF = 'projectsite.urls'
