@@ -11,6 +11,23 @@ class HomePageView(ListView):
     context_object_name = 'home'
     template_name = "home.html"
 
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context["total_tasks"] = Task.objects.count()
+        context["total_subtasks"] = SubTask.objects.count()
+        context["total_notes"] = Note.objects.count()
+
+        count = (
+            (Task.objects.filter(
+                status="Completed").count()
+                + SubTask.objects.filter(status="Completed").count()
+            )
+        )
+
+        context["tasks_completed"] = count
+        return context
+
 
 # Task class views
 class TaskListView(ListView):
