@@ -6,9 +6,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title font-weight-bold text-primary">{% if object %}Update Note {% else %} Add New
-                            Note {% endif %}</div>
-                        <div class="card-category">Page Subtitle</div>
+                        <div class="card-title font-weight-bold text-primary">
+                            {% if object %}Update Note {% else %} Add New Note {% endif %}
+                        </div>
+                        <div class="card-category">
+                            {% if object %}Edit your note to keep it current. {% else %} What would you like to jot down? {% endif %}
+                        </div>
                     </div>
 
                     <div class="col-md-6">

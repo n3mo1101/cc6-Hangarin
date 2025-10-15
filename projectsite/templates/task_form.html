@@ -6,9 +6,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title font-weight-bold text-primary">{% if object %}Update Task {% else %} Add New
-                            Task {% endif %}</div>
-                        <div class="card-category">Page Subtitle</div>
+                        <div class="card-title font-weight-bold text-primary">
+                            {% if object %}Update Task {% else %} Add New Task {% endif %}
+                        </div>
+                        <div class="card-category">
+                            {% if object %}Need to make changes to this task? {% else %} What new task would you like to add? {% endif %}
+                        </div>
                     </div>
 
                     <div class="col-md-6">

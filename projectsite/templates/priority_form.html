@@ -6,9 +6,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title font-weight-bold text-primary">{% if object %}Update Priority {% else %} Add New
-                            Priority {% endif %}</div>
-                        <div class="card-category">Page Subtitle</div>
+                        <div class="card-title font-weight-bold text-primary">
+                            {% if object %}Update Priority {% else %} Add New Priority {% endif %}
+                        </div>
+                        <div class="card-category">
+                            {% if object %}Modify this priority setting? {% else %} Create a new priority level. {% endif %}
+                        </div>
                     </div>
 
                     <div class="col-md-6">

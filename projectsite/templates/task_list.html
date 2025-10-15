@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title font-weight-bold text-primary">List of Tasks</div>
-                        <div class="card-category">Page Subtitle</div>
+                        <div class="card-category">View and manage all your tasks in one place.</div>
                     </div>
                     <br />
                     <div class="col-md-12 row">
@@ -58,7 +58,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped mt-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped mt-3" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th scope="col">Title</th>
@@ -96,6 +97,7 @@
                             </tbody>
                         </table>
                         {% include 'includes/pagination.html' %}
+                    </div>  
                     </div>
                 </div>
             </div>
