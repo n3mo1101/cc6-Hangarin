@@ -126,6 +126,7 @@ class NoteListView(ListView):
     context_object_name = 'notes'
     template_name = "note_list.html"
     paginate_by = 5
+    ordering = ["id"]
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -137,6 +138,20 @@ class NoteListView(ListView):
                 Q(content__icontains=query)
                 )
         return qs
+    
+    def get_ordering(self):
+        allowed = ["id", "task__title"]
+        sort_by = self.request.GET.get("sort_by", "id")
+        sort_order = self.request.GET.get("sort_order", "desc")  # Get the order from request
+        
+        if sort_by not in allowed:
+            sort_by = "id" # Default sort field
+        
+        # Add '-' prefix for descending order
+        if sort_order == "desc":
+            sort_by = f"-{sort_by}"
+        
+        return sort_by
 
 
 class NoteCreateView(CreateView):
@@ -165,6 +180,7 @@ class CategoryListView(ListView):
     context_object_name = 'categories'
     template_name = "category_list.html"
     paginate_by = 5
+    ordering = ["id"]
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -174,6 +190,19 @@ class CategoryListView(ListView):
             qs = qs.filter(name__icontains=query)
         return qs
 
+    def get_ordering(self):
+        allowed = ["id", "name"]
+        sort_by = self.request.GET.get("sort_by", "id")
+        sort_order = self.request.GET.get("sort_order", "desc")  # Get the order from request
+        
+        if sort_by not in allowed:
+            sort_by = "id" # Default sort field
+        
+        # Add '-' prefix for descending order
+        if sort_order == "desc":
+            sort_by = f"-{sort_by}"
+        
+        return sort_by
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -201,6 +230,7 @@ class PriorityListView(ListView):
     context_object_name = 'priorities'
     template_name = "priority_list.html"
     paginate_by = 5
+    ordering =["id"]
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -209,6 +239,20 @@ class PriorityListView(ListView):
         if query:
             qs = qs.filter(name__icontains=query)
         return qs
+    
+    def get_ordering(self):
+        allowed = ["id", "name"]
+        sort_by = self.request.GET.get("sort_by", "id")
+        sort_order = self.request.GET.get("sort_order", "desc")  # Get the order from request
+        
+        if sort_by not in allowed:
+            sort_by = "id" # Default sort field
+        
+        # Add '-' prefix for descending order
+        if sort_order == "desc":
+            sort_by = f"-{sort_by}"
+        
+        return sort_by
 
 
 class PriorityCreateView(CreateView):

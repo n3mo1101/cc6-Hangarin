@@ -11,7 +11,7 @@
                     </div>
                     <br />
                     <div class="col-md-12 row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-2 mb-md-0">
                             <form class="navbar-left navbar-form nav-search mr-md-3"
                                 action="{% url 'category-list'%}">
                                 <div class="input-group">
@@ -24,7 +24,34 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3 mb-2 mb-md-0">
+                            <form method="get" class="row g-2 align-items-center">
+                                <div>
+                                    <select class="form-control form-control-sm" id="smallSelect" name="sort_by" onchange="this.form.submit()">
+                                        <option value="id" {% if request.GET.sort_by == "id"%}selected{% endif %}>Latest</option>
+                                        <option value="name" {% if request.GET.sort_by == "name" %}selected{% endif%}>Name</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="sort_order" value="{{ request.GET.sort_order }}">
+                                    <button type="submit" class="btn input-group-text" onclick="toggleSortOrder(this)">
+                                        <i class="fa-solid {% if request.GET.sort_order == 'asc' %}fa-arrow-up-wide-short{% else %}fa-arrow-down-wide-short{% endif %}"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <script>
+                            function toggleSortOrder(button) {
+                                const form = button.closest('form');
+                                const hiddenInput = form.querySelector('input[name="sort_order"]');
+                                const currentOrder = hiddenInput.value;
+                                
+                                // Toggle between asc and desc
+                                hiddenInput.value = currentOrder === 'asc' ? 'desc' : 'asc';
+                            }
+                            </script>
+                        </div>
+                        <div class="col-md-3 mb-2 mb-md-0">
                             <div class="float-right">
                                 <a href="{% url 'category-add' %}" class="btn btn-success btn-rounded">Add
                                     Category</a>
